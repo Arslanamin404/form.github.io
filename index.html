@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Travel Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <img class= 'bg' src="BG.jpg" alt="IIT Kashmir">
+    <div class="container">
+        <h1>Welcome to IIT Kashmir, Qatar Trip Form</h1>
+        <h5>Enter your details and Submit this form to confirm your participation in the Trip.</h5>
+        <form method="post">
+        <input type="text" name="name" id="Name" placeholder="Name">
+        <input type="number" name="age" id="Age" placeholder="Age" min="18">
+        <input type="text" name="gender" id="Gender" placeholder="Gender">
+        <input type="email" name="email" id="Email" placeholder="Enter your Email">
+        <input type="phone" name="phone" id="Phone" placeholder="Enter your Phone Number">
+        <textarea name="desc" id="desc" cols="15" rows="5" placeholder="Reason for not participating"></textarea>
+        <button class="btn" name="submit">Submit</button>
+        <script>
+            if(window.history.replaceState) {
+                window.history.replaceState(null,null,window.location.href);
+            }
+        </script>
+    </form>
+    <?php
+$con= mysqli_connect('localhost','root','','qatar_trip');
+if(isset($_POST['submit']))
+{
+    $name=$_POST['name'];
+    $age=$_POST['age'];
+    $gender=$_POST['gender'];
+    $email=$_POST['email'];
+    $phone=$_POST['phone'];
+    $desc=$_POST['desc'];
+    $query="INSERT INTO trip(Name,Age,Gender,Email,Phone,other) VALUES('$name','$age','$gender','$email','$phone','$desc')";
+    $rub = mysqli_query($con,$query);
+}
+
+?>
+    </div>
+
+</body>
+</html>
